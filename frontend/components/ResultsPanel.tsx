@@ -62,7 +62,7 @@ export default function ResultsPanel({ result }: { result: AnalysisResult }) {
   // Stable quote and videos per result (useMemo keyed on matchScore)
   const quote = useMemo(() => getRandomQuote(result.verdict), [result.verdict, result.matchScore]);
   const gapCategories = useMemo(
-    () => [...new Set(result.gapSkills.map((g) => g.category))],
+    () => Array.from(new Set(result.gapSkills.map((g) => g.category))),
     [result.gapSkills]
   );
   const videos = useMemo(
