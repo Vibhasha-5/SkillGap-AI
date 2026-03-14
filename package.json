@@ -1,0 +1,13 @@
+{
+  "name": "skillgap-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm run start",
+    "api": "cd api && uvicorn main:app --reload --port 8000",
+    "install:frontend": "cd frontend && npm install",
+    "install:api": "cd api && pip install -r requirements.txt"
+  }
+}
