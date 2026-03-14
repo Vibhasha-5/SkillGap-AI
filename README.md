@@ -2,43 +2,11 @@
 
 > Quantify your placement readiness. Paste a resume + job description, get a precision NLP match score, skill gap analysis, and actionable recommendations.
 
----
-
-## What's inside
-
-```
-skillgap-ai/
-├── frontend/
-│   ├── app/
-│   │   ├── page.tsx           # Main UI — textarea + drag-and-drop inputs
-│   │   ├── layout.tsx
-│   │   └── globals.css        # Cyberpunk terminal styles
-│   ├── components/
-│   │   ├── TerminalLoader.tsx  # Boot sequence animation
-│   │   ├── ScoreRing.tsx       # Animated SVG match score
-│   │   ├── ResultsPanel.tsx    # Full analysis output + radar chart
-│   │   ├── CategoryBar.tsx     # Animated skill category bars
-│   │   ├── SkillPill.tsx       # Color-coded skill tags
-│   │   ├── DropZone.tsx        # Drag-and-drop OCR scanner (NEW)
-│   │   ├── MotivationBlock.tsx # Typewriter quote after scan (NEW)
-│   │   └── VideoResources.tsx  # YouTube skill-building grid (NEW)
-│   └── lib/
-│       ├── nlp.ts              # TF-IDF + cosine similarity engine
-│       ├── ocr.ts              # PDF extraction + Tesseract OCR (NEW)
-│       └── resources.ts        # Quotes + YouTube video data (NEW)
-├── api/                        # Optional FastAPI Python backend
-└── README.md
-```
-
----
-
 ## Prerequisites
 
 - Node.js 18+ (check: `node -v`)
 - npm 9+ (check: `npm -v`)
 - Python 3.11+ (only if running the backend — optional)
-
----
 
 ## Quick Start — Frontend Only (Recommended)
 
@@ -57,7 +25,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000]
 
 ### 3. Build for production (optional local test)
 
@@ -97,7 +65,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
 
-API docs available at [http://localhost:8000/docs](http://localhost:8000/docs)
+API docs available at [http://localhost:8000/docs]
 
 ### 4. Connect frontend to backend
 
@@ -111,95 +79,11 @@ Restart the frontend dev server.
 
 ---
 
-## Deploy to Vercel
-
-### Option A — Vercel CLI (Fastest)
-
-```bash
-# Install Vercel CLI globally
-npm i -g vercel
-
-# From the project root
-cd frontend
-vercel
-
-# Follow the prompts:
-# - Set up and deploy: Y
-# - Which scope: your account
-# - Link to existing project: N
-# - Project name: skillgap-ai (or anything you want)
-# - In which directory is your code: ./  (you're already in frontend/)
-# - Want to override settings: N
-```
-
-Your app is live. Vercel will give you a URL like `https://skillgap-ai.vercel.app`.
-
----
-
-### Option B — Vercel Dashboard (Easiest)
-
-1. Push your project to GitHub:
-
-```bash
-git init
-git add .
-git commit -m "initial commit"
-gh repo create skillgap-ai --public --push
-# or use GitHub Desktop / the GitHub website to create + push
-```
-
-2. Go to [vercel.com](https://vercel.com) → **Add New Project**
-3. Import your GitHub repo
-4. Set the following in Vercel project settings:
-   - **Framework Preset**: Next.js
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build` (auto-detected)
-   - **Output Directory**: `.next` (auto-detected)
-5. Click **Deploy**
-
-Done. Every push to `main` will auto-deploy.
-
----
-
-## Deploy the Python Backend (Optional — Railway)
-
-If you want to extend the backend with real BERT/spaCy:
-
-1. Go to [railway.app](https://railway.app) → **New Project** → **Deploy from GitHub repo**
-2. Select your repo, set **Root Directory** to `api`
-3. Railway auto-detects Python via `requirements.txt` and `Procfile`
-4. After deploy, copy your Railway URL (e.g. `https://skillgap-api.railway.app`)
-5. In Vercel dashboard → your project → **Settings** → **Environment Variables**:
-   - Key: `NEXT_PUBLIC_API_URL`
-   - Value: `https://skillgap-api.railway.app`
-6. Redeploy on Vercel
-
----
-
 ## Environment Variables Reference
 
 | Variable | Where | Description |
 |---|---|---|
 | `NEXT_PUBLIC_API_URL` | Vercel / `.env.local` | Optional: URL of FastAPI backend. If empty, browser NLP is used. |
-
----
-
-## Project Architecture
-
-```
-Browser Request
-      │
-      ▼
-Next.js (Vercel)
-      │
-      ├── lib/nlp.ts ──► TF-IDF tokenization
-      │                  Skill taxonomy matching (O*NET)
-      │                  Cosine similarity scoring
-      │                  Gap analysis + recommendations
-      │
-      └── /api/* ──────► FastAPI (Railway / Render) [optional]
-                          Same analysis, extensible with BERT/spaCy
-```
 
 ---
 
@@ -215,23 +99,6 @@ Next.js (Vercel)
 | Animations | Framer Motion + CSS keyframes |
 | Backend (opt.) | FastAPI, Python 3.11, Pydantic |
 | Deployment | Vercel (frontend), Railway (backend) |
-
----
-
-## Resume Bullets for Your Portfolio
-
-After running the app, you can use these on your resume:
-
-```
-• Built NLP pipeline using TF-IDF cosine similarity and skill taxonomy matching
-  achieving 87%+ accuracy on resume-JD skill extraction across 200+ test pairs
-
-• Extracted 50+ domain-specific skills via O*NET taxonomy; surfaced prioritized
-  gap list with critical / important / nice-to-have classification
-
-• Deployed production Next.js app to Vercel with optional FastAPI backend;
-  all NLP runs client-side — zero data transmission, zero latency
-```
 
 ---
 
